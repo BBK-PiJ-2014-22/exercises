@@ -74,7 +74,25 @@ object hammurabi extends App {
         println("We have only "+ population + " and that would feed " + bushelsToFeed / 20)
     bushelsToFeed = readInt("How much grain should we feed the people?")
     }
-           
+    bushelsToFeed
+  }
+  
+  def askSowFields(population : Int, bushels : Int , acres : Int) = {
+    var acresToSow = readInt("How many acres should we sow?")
+    while (acresToSow < 0 ||
+           acresToSow > acres ||
+           bushels / 2 < acresToSow ||
+           population * 10 < acresToSow){
+      negativeNumber(acresToSow)
+      if (acresToSow > acres) 
+        println("I'm afraid we have only " + acres)
+      else if (bushels / 2 < acresToSow)
+        println("I'm afraid only have enough grain to sow " + (bushels / 2) + " acres")
+      else if (population * 10 < acresToSow)
+        println("I'm afraid we only have enough people to sow " + (population * 10) + " fields")
+      acresToSow = readInt("How many acres should we sow?")
+    }
+    acresToSow
   }
 
   def hammurabi() = {
@@ -110,10 +128,12 @@ object hammurabi extends App {
           val landBought = askBuyLand(bushelsInStorage, pricePerAcre)
           val landSold   = askSellLand(acresOwned, pricePerAcre)
           val peopleFed  = askFeedPeople(population, bushelsInStorage)
+          val acresSown  = askSowFields(population, bushelsInStorage, acresOwned)
           
           println(landBought)
           println(landSold)
           println(peopleFed)
+          println(acresSown)
     }
                
   }
