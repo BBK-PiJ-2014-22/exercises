@@ -21,8 +21,22 @@ object hammurabi extends App {
     case _ : Throwable =>
       println("That's not an integer. Please enter an integer.")
       readInt(message)
-      }
+          }
+  }
+  
+  def askBuyLand(bushels : Int , price : Int) = {
+    var acresToBuy = -1
+    do {
+      acresToBuy = readInt("How much land do you want to buy?")
+      if (acresToBuy < 0) 
+        println("I'm afraid, great lord, we have not yet invented negative numbers")
+      else if (acresToBuy * price > bushels)
+        println("I'm afraid, great lord, that we have only " + bushels +
+                " and that would cost us " + (acresToBuy * price))          
     }
+    while (acresToBuy < 0 || acresToBuy * price > bushels) 
+
+  }
   
 
   def hammurabi() = {
@@ -48,19 +62,20 @@ object hammurabi extends App {
           println("In the previous year " + starved + " people starved to death.")
           println("In the previous year " + immigrants + " people entered the kingdom.")
           println("The population is now " + population + ".")
-          println("We harvested " + harvest + "bushels at " + bushelsPerAcre + " bushels per acre.")
+          println("We harvested " + harvest + " bushels at " + bushelsPerAcre + " bushels per acre.")
           println("Rats destroyed " + rats_ate + " bushels, leaving " + bushelsInStorage + "bushels in storage.")
-          println("The city owns " + acresOwned + "acres of land.")
+          println("The city owns " + acresOwned + " acres of land.")
           println("Land is currently worth " + pricePerAcre + "bushels per acre.")
           println("There were " + plagueDeaths + " deaths from the plague.")
+          println("")
+          
+          askBuyLand(bushelsInStorage, pricePerAcre)
+          
     }
                
   }
   
-  
-  readInt("Standard Message")
-  readInt("Standard Message")
-  // hammurabi()
-  println("Check 4")
+  hammurabi()
+  println("Check 5")
   
 }
