@@ -14,6 +14,16 @@ object hammurabi extends App {
   your term. Rule poorly and you will be kicked out of office!""")
   }
   
+  def readInt(message: String): Int = {
+    try {
+      readLine(message).toInt
+    } catch {
+    case _ : Throwable =>
+      println("That's not an integer. Please enter an integer.")
+      readInt(message)
+      }
+    }
+  
 
   def hammurabi() = {
     
@@ -27,6 +37,8 @@ object hammurabi extends App {
     var acresOwned = 1000
     var pricePerAcre = 19 // each acre costs this many bushels
     var plagueDeaths = 0
+    var year = 0
+    
     
     printIntroductoryMessage()
     
@@ -45,7 +57,10 @@ object hammurabi extends App {
                
   }
   
-  hammurabi()
-  println("Check 3")
+  
+  readInt("Standard Message")
+  readInt("Standard Message")
+  // hammurabi()
+  println("Check 4")
   
 }
