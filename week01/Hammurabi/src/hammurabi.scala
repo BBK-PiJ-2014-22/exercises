@@ -42,19 +42,23 @@ object hammurabi extends App {
                 " and that would cost us " + (acresToBuy * price))          
     }
     while (acresToBuy < 0 || acresToBuy * price > bushels) 
+    println("That cost us " + acresToBuy * price + " bushels.")
     acresToBuy
   }
   
   def askSellLand(acres : Int, price : Int) = {
     
     var acresToSell = readInt("How much land do you want to sell?")
-    while (acresToSell > acres || acresToSell < 0) {
+    while (acresToSell > acres || 
+           acresToSell < 0) {
       negativeNumber(acresToSell)
       if (acresToSell > acres) 
-        println("I'm afraid, great lord, that we have only " + " acres")
+        println("I'm afraid, great lord, that we have only " + acres + " acres")
       acresToSell = readInt("How much land do you want to sell?")
+  
     }
-    println("That cost us "+ acres*acresToSell + " bushels")
+    
+    println("That gave us "+ price  * acresToSell + " bushels")
     acresToSell
     
   }
@@ -107,6 +111,9 @@ object hammurabi extends App {
           val landSold   = askSellLand(acresOwned, pricePerAcre)
           val peopleFed  = askFeedPeople(population, bushelsInStorage)
           
+          println(landBought)
+          println(landSold)
+          println(peopleFed)
     }
                
   }
