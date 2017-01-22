@@ -71,5 +71,6 @@ $RECYCLE.BIN/
 # Eclipse
 .metadata/
 .classpath
-.project
 .settings/
+.cache-main
+.project
