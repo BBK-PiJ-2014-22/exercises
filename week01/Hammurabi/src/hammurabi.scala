@@ -1,4 +1,5 @@
 import scala.util.Random
+import scala.math
 
 
 object Hammurabi extends App {
@@ -106,9 +107,7 @@ object Hammurabi extends App {
   }
       
   def starvation(population : Int, bushels : Int) = {
-      0
-   
-    
+    scala.math.max(0, population - (bushels / 20))
   }
   
   
