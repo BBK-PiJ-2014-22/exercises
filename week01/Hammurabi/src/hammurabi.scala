@@ -103,7 +103,11 @@ object Hammurabi extends App {
       population / 2 
     else
       population
-    
+  }
+      
+  def starvation(population : Int, bushels : Int) = {
+      0
+   
     
   }
   
