@@ -24,7 +24,7 @@ object hammurabi extends App {
           }
   }
   
-  def negativeNumber(response : Int) : boolean = {
+  def negativeNumber(response : Int) = {
     val result = response < 0
     if (result) 
       println("I'm afraid, great lord, we have not yet invented negative numbers")
@@ -58,7 +58,20 @@ object hammurabi extends App {
     acresToSell
     
   }
-  
+  def askFeedPeople(population : Int, bushelsInStorage : Int) = {
+    var bushelsToFeed = readInt("How much grain should we feed the people?")
+    while (bushelsToFeed < 0 || 
+           bushelsToFeed > bushelsInStorage ||
+           bushelsToFeed / 20  > population) {
+      negativeNumber(bushelsToFeed)
+      if (bushelsToFeed > bushelsInStorage) 
+        println("We have only " + bushelsInStorage)
+      else if (bushelsToFeed / 20  > population) 
+        println("We have only "+ population + " and that would feed " + bushelsToFeed / 20)
+    bushelsToFeed = readInt("How much grain should we feed the people?")
+    }
+           
+  }
 
   def hammurabi() = {
     
@@ -91,6 +104,8 @@ object hammurabi extends App {
           println("")
           
           val landBought = askBuyLand(bushelsInStorage, pricePerAcre)
+          val landSold   = askSellLand(acresOwned, pricePerAcre)
+          val peopleFed  = askFeedPeople(population, bushelsInStorage)
           
     }
                
