@@ -1,4 +1,7 @@
-object hammurabi extends App {
+import scala.util.Random
+
+
+object Hammurabi extends App {
  
   def printIntroductoryMessage()  = {
     println("""Congratulations, you are the newest ruler of ancient Samaria, elected
@@ -94,6 +97,17 @@ object hammurabi extends App {
     }
     acresToSow
   }
+  
+  def plague(population : Int) = {
+    if (scala.util.Random.nextInt(100) <= 15)
+      population / 2 
+    else
+      population
+    
+    
+  }
+  
+  
 
   def hammurabi() = {
     
