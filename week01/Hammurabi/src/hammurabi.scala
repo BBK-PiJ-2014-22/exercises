@@ -24,18 +24,39 @@ object hammurabi extends App {
           }
   }
   
+  def negativeNumber(response : Int) : boolean = {
+    val result = response < 0
+    if (result) 
+      println("I'm afraid, great lord, we have not yet invented negative numbers")
+    result
+  }
+  
   def askBuyLand(bushels : Int , price : Int) = {
     var acresToBuy = -1
     do {
       acresToBuy = readInt("How much land do you want to buy?")
-      if (acresToBuy < 0) 
-        println("I'm afraid, great lord, we have not yet invented negative numbers")
-      else if (acresToBuy * price > bushels)
+      negativeNumber(acresToBuy)
+  
+      if (acresToBuy * price > bushels)
         println("I'm afraid, great lord, that we have only " + bushels +
                 " and that would cost us " + (acresToBuy * price))          
     }
     while (acresToBuy < 0 || acresToBuy * price > bushels) 
-
+    acresToBuy
+  }
+  
+  def askSellLand(acres : Int, price : Int) = {
+    
+    var acresToSell = readInt("How much land do you want to sell?")
+    while (acresToSell > acres || acresToSell < 0) {
+      negativeNumber(acresToSell)
+      if (acresToSell > acres) 
+        println("I'm afraid, great lord, that we have only " + " acres")
+      acresToSell = readInt("How much land do you want to sell?")
+    }
+    println("That cost us "+ acres*acresToSell + " bushels")
+    acresToSell
+    
   }
   
 
@@ -69,7 +90,7 @@ object hammurabi extends App {
           println("There were " + plagueDeaths + " deaths from the plague.")
           println("")
           
-          askBuyLand(bushelsInStorage, pricePerAcre)
+          val landBought = askBuyLand(bushelsInStorage, pricePerAcre)
           
     }
                
