@@ -36,6 +36,14 @@ object HammurabiTests extends App {
       println(tag + "failed. Harvest was "+harvest)
     else println(tag + "passed")
   }
+  
+  def genericTest(tag: String, actual : Int, expected : Int) = {
+    if (expected == actual) println("Test " + tag + " passed")
+    else {
+     println("Test " + tag + " failed")
+     println("Expected: " + expected + " Actual: "+actual)
+    }
+  }
  
   //Plague tests
   /*
@@ -71,10 +79,21 @@ object HammurabiTests extends App {
   testImmigration("Test 14", 3000, 1000, 100, 35, 0)
 
   */
-  
+  /*
   for (attempt <- 1 to 100) {
     testAssessHarvest("Test " + attempt)
   }
+  */
+  
+  genericTest("Harvest Test 1", Hammurabi.harvest(100, 1), 100)
+  genericTest("Harvest Test 2", Hammurabi.harvest(100, 2), 200)
+  genericTest("Harvest Test 3", Hammurabi.harvest(100, 3), 300)
+  genericTest("Harvest Test 4", Hammurabi.harvest(100, 4), 400)
+  genericTest("Harvest Test 5", Hammurabi.harvest(100, 5), 500)
+  genericTest("Harvest Test 7", Hammurabi.harvest(200, 5), 1000)
+  genericTest("Harvest Test 8", Hammurabi.harvest(300, 5), 1500)
+  genericTest("Harvest Test 9", Hammurabi.harvest(400, 5), 2000)
+
   
 }
   

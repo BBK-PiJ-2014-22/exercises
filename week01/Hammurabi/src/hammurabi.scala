@@ -121,6 +121,10 @@ object Hammurabi extends App {
     scala.util.Random.nextInt(7) + 1
   }
   
+  def harvest(acresSown : Int, bushelsPerAcre : Int) = {
+    0
+  }
+  
   
 
   def hammurabi() = {
