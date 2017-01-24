@@ -85,14 +85,14 @@ object HammurabiTests extends App {
   }
   */
   
-  genericTest("Harvest Test 1", Hammurabi.harvest(100, 1), 100)
-  genericTest("Harvest Test 2", Hammurabi.harvest(100, 2), 200)
-  genericTest("Harvest Test 3", Hammurabi.harvest(100, 3), 300)
-  genericTest("Harvest Test 4", Hammurabi.harvest(100, 4), 400)
-  genericTest("Harvest Test 5", Hammurabi.harvest(100, 5), 500)
-  genericTest("Harvest Test 7", Hammurabi.harvest(200, 5), 1000)
-  genericTest("Harvest Test 8", Hammurabi.harvest(300, 5), 1500)
-  genericTest("Harvest Test 9", Hammurabi.harvest(400, 5), 2000)
+  genericTest("Harvest Test 1", Hammurabi.calcHarvest(100, 1), 100)
+  genericTest("Harvest Test 2", Hammurabi.calcHarvest(100, 2), 200)
+  genericTest("Harvest Test 3", Hammurabi.calcHarvest(100, 3), 300)
+  genericTest("Harvest Test 4", Hammurabi.calcHarvest(100, 4), 400)
+  genericTest("Harvest Test 5", Hammurabi.calcHarvest(100, 5), 500)
+  genericTest("Harvest Test 7", Hammurabi.calcHarvest(200, 5), 1000)
+  genericTest("Harvest Test 8", Hammurabi.calcHarvest(300, 5), 1500)
+  genericTest("Harvest Test 9", Hammurabi.calcHarvest(400, 5), 2000)
 
   
 }

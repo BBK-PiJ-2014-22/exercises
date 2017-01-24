@@ -121,14 +121,27 @@ object Hammurabi extends App {
     scala.util.Random.nextInt(7) + 1
   }
   
-  def harvest(acresSown : Int, bushelsPerAcre : Int) = {
-    0
+  def calcHarvest(acresSown : Int, bushelsPerAcre : Int) = {
+    acresSown * bushelsPerAcre
   }
+  
+  def ratProblem(bushelsInStorage : Int) = {
+    val random = scala.util.Random
+    if (random.nextInt(100) < 40)
+      bushelsInStorage / (random.nextInt(2) + 1)
+    else
+      bushelsInStorage
+  }
+  
+  def landPrice() = { scala.util.Random.nextInt(6) + 17}
+
+  
   
   
 
   def hammurabi() = {
     
+    var totalStarved = 0
     var starved = 0 // how many people starved
     var immigrants = 5 // how many people came to the city
     var population = 100
@@ -157,20 +170,41 @@ object Hammurabi extends App {
           println("There were " + plagueDeaths + " deaths from the plague.")
           println("")
           
-          val landBought = askBuyLand(bushelsInStorage, pricePerAcre)
-          val landSold   = askSellLand(acresOwned, pricePerAcre)
-          val peopleFed  = askFeedPeople(population, bushelsInStorage)
+          var landBought = askBuyLand(bushelsInStorage, pricePerAcre)
+          
+          if (landBought == 0) landBought = 0 - askSellLand(acresOwned, pricePerAcre)
+
+          acresOwned += landBought
+          bushelsInStorage -= landBought * pricePerAcre
+          
+          val grainFed  = askFeedPeople(population, bushelsInStorage)
           val acresSown  = askSowFields(population, bushelsInStorage, acresOwned)
           
-          println(landBought)
-          println(landSold)
-          println(peopleFed)
-          println(acresSown)
+         
+          plagueDeaths = plague(population)
+          population -= plagueDeaths
+          starved = starvation(population, grainFed)
+          population -= starved
+          bushelsInStorage -= grainFed
+          
+          immigrants = immigration(acresOwned, bushelsInStorage, population, starved)
+          population -= immigrants
+          bushelsPerAcre = assessHarvest()
+          
+          harvest = calcHarvest(acresSown, bushelsPerAcre)
+          bushelsInStorage += harvest
+          
+          rats_ate = ratProblem(bushelsInStorage)
+          bushelsInStorage -= rats_ate
+          
+          pricePerAcre = landPrice()
+
+
     }
                
   }
   
   hammurabi()
-  println("Check 5")
+
   
 }
