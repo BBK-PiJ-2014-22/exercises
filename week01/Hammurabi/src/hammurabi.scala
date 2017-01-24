@@ -117,6 +117,10 @@ object Hammurabi extends App {
       (20 * acresOwned + bushelsInStorage) / (100 * population) + 1
   }
   
+  def assessHarvest() = {
+    scala.util.Random.nextInt(7) + 1
+  }
+  
   
 
   def hammurabi() = {
