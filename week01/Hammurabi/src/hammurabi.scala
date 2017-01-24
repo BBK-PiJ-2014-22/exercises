@@ -110,6 +110,10 @@ object Hammurabi extends App {
     scala.math.max(0, population - (bushels / 20))
   }
   
+  def immigration(acresOwned : Int, bushelsInStorage : Int, population : Int, starved : Int) = {
+    0
+  }
+  
   
 
   def hammurabi() = {
