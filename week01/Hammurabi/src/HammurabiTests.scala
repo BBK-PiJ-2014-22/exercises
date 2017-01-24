@@ -29,6 +29,13 @@ object HammurabiTests extends App {
         println("Expected: " + expected + " Actual: "+actual)
       }
    }
+  
+  def testAssessHarvest(tag: String) = {
+    val harvest = Hammurabi.assessHarvest()
+    if ( harvest < 1 || harvest > 8)
+      println(tag + "failed. Harvest was "+harvest)
+    else println(tag + "passed")
+  }
  
   //Plague tests
   /*
@@ -47,7 +54,7 @@ object HammurabiTests extends App {
   
   // immigration(acresOwned : Int, bushelsInStorage : Int, population : Int, starved : Int) = {
   // (20 * number of acres + amount of grain in storage) / (100 * population) + 1
-  
+  /*
   testImmigration("Test 1", 1000, 1000, 100, 0, 3)
   testImmigration("Test 2", 2000, 1000, 100, 0, 5)
   testImmigration("Test 3", 1000, 5000, 100, 0, 3)
@@ -63,6 +70,12 @@ object HammurabiTests extends App {
   testImmigration("Test 13", 1000, 1000, 300, 30, 0)
   testImmigration("Test 14", 3000, 1000, 100, 35, 0)
 
+  */
+  
+  for (attempt <- 1 to 100) {
+    testAssessHarvest("Test " + attempt)
+  }
+  
 }
   
   
