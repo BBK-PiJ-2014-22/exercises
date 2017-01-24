@@ -103,7 +103,7 @@ object Hammurabi extends App {
     if (scala.util.Random.nextInt(100) <= 15)
       population / 2 
     else
-      population
+      0
   }
       
   def starvation(population : Int, bushels : Int) = {
@@ -111,10 +111,14 @@ object Hammurabi extends App {
   }
   
   def immigration(acresOwned : Int, bushelsInStorage : Int, population : Int, starved : Int) = {
-    if (starved > 0)
-      0
-    else
+    println("Debug: Immigration. Params: "+ acresOwned +"," + bushelsInStorage + "," + population + ", " + starved)
+    if (starved > 0){
+      println("Debug: starvation. Should return 0")
+      0}
+    else {
+      println("Debug: no starvation. Should return number")
       (20 * acresOwned + bushelsInStorage) / (100 * population) + 1
+    }
   }
   
   def assessHarvest() = {
@@ -130,7 +134,7 @@ object Hammurabi extends App {
     if (random.nextInt(100) < 40)
       bushelsInStorage / (random.nextInt(2) + 1)
     else
-      bushelsInStorage
+      0
   }
   
   def landPrice() = { scala.util.Random.nextInt(6) + 17}
@@ -141,7 +145,7 @@ object Hammurabi extends App {
 
   def hammurabi() = {
     
-    var totalStarved = 0
+    var deaths = 0
     var starved = 0 // how many people starved
     var immigrants = 5 // how many people came to the city
     var population = 100
@@ -178,17 +182,21 @@ object Hammurabi extends App {
           bushelsInStorage -= landBought * pricePerAcre
           
           val grainFed  = askFeedPeople(population, bushelsInStorage)
-          val acresSown  = askSowFields(population, bushelsInStorage, acresOwned)
+          bushelsInStorage -= grainFed
           
+          val acresSown  = askSowFields(population, bushelsInStorage, acresOwned)
+          bushelsInStorage -= acresSown * 2
          
           plagueDeaths = plague(population)
           population -= plagueDeaths
+          deaths += plagueDeaths
           starved = starvation(population, grainFed)
           population -= starved
-          bushelsInStorage -= grainFed
+          deaths += starved
+
           
           immigrants = immigration(acresOwned, bushelsInStorage, population, starved)
-          population -= immigrants
+          population += immigrants
           bushelsPerAcre = assessHarvest()
           
           harvest = calcHarvest(acresSown, bushelsPerAcre)
@@ -201,6 +209,8 @@ object Hammurabi extends App {
 
 
     }
+    
+    println("Deaths: "+deaths + "Acres: "+acresOwned)
                
   }
   
