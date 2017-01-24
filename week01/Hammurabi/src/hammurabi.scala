@@ -111,7 +111,10 @@ object Hammurabi extends App {
   }
   
   def immigration(acresOwned : Int, bushelsInStorage : Int, population : Int, starved : Int) = {
-    0
+    if (starved > 0)
+      0
+    else
+      (20 * acresOwned + bushelsInStorage) / (100 * population) + 1
   }
   
   
