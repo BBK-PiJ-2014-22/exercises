@@ -159,7 +159,24 @@ object ScalaBasics {
    * @param s the potential palindrome
    * @return true if s is a palindrome; false otherwise
    */
-  def isPalindrome(s: String): Boolean = ???
+  def isPalindrome(s: String): Boolean = {
+    val l = s.toLowerCase()
+    val m = for (i <- 0 until s.length if isValid(l(i))) yield l(i)
+    val r = for (i <- s.length-1 to 0 by -1 if isValid(l(i))) yield l(i)
+    println(m + " : " + r)
+    m == r
+    /*
+    for (i <- 0 until s.length 
+          if isValid(l(i)
+    ) yield l(i) 
+      == 
+    (for (i <- s.length-1 to 0 by -1 if isValid(l(i)) yield l(i))*/
+  }
+  
+  def isValid(s: Char): Boolean = {
+    val invalid = Set(".","?",",",";","!","-","'",".", " ")
+    ! invalid(s.toString)
+  }
 
   /**
    * You don't have to complete this one as we've removed it from the list 
