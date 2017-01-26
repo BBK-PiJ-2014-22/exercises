@@ -1,5 +1,7 @@
 package basics
 
+import scala.math
+
 /**
  * This is a singleton object containing the functions you need
  * to implement. Please make sure to read the documentation associated
@@ -76,7 +78,14 @@ object ScalaBasics {
    * @param r the array of integers
    * @return the minimum integer in the array
    */
-  def minFor(r: Array[Int]): Int = ???
+  def minFor(r: Array[Int]): Int = {
+    
+    var min = r(0)
+
+    for (i <- r) min = scala.math.min(min,i)
+      
+    min
+  }
 
   /**
    * Write a function called minRecursive that returns the minimum integer in the Array r.
