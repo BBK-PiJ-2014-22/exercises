@@ -79,11 +79,8 @@ object ScalaBasics {
    * @return the minimum integer in the array
    */
   def minFor(r: Array[Int]): Int = {
-    
     var min = r(0)
-
     for (i <- r) min = scala.math.min(min,i)
-      
     min
   }
 
@@ -101,7 +98,12 @@ object ScalaBasics {
    * @param r the array of integers
    * @return the minimum integer in the array
    */
-  def minRecursive(r: Array[Int]): Int = ???
+  def minRecursive(r: Array[Int]): Int = {
+    
+    if (r.length == 1) r(0)
+    else scala.math.min(r(0), minRecursive(r.slice(1,r.length)))
+    
+  }
 
   /**
    * Return the base 36 equivalent of the BitInt b.
