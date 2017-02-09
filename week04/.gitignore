@@ -1,0 +1,8 @@
+/bin/
+/project
+/target
+.ideas
+.settings
+build.sbt
+*.xml
+.idea
