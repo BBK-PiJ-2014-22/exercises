@@ -1,5 +1,5 @@
 
-package main
+package poly
 
 /**Represents a traffic light. Red / Amber / Green are valid**/
 //polymorphic
